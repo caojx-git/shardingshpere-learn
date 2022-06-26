@@ -22,18 +22,18 @@
     where level_id = #{levelId,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthLevel">
-    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthLevel" useGeneratedKeys="true" keyColumn="level_id" keyProperty="levelId">
+<!--    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
     insert into health_level(level_name)
     values (#{levelName,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthLevel">
-    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthLevel" useGeneratedKeys="true" keyColumn="level_id" keyProperty="levelId">
+<!--    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
     insert into health_level
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="levelName != null">

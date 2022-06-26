@@ -24,15 +24,15 @@
     where task_id = #{taskId,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthTask">
-    <selectKey keyProperty="taskId" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthTask" useGeneratedKeys="true" keyColumn="task_id" keyProperty="taskId">
+<!--    <selectKey keyProperty="taskId" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
     insert into health_task(record_id, user_id, task_name)
     values (#{recordId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{taskName,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthTask" useGeneratedKeys="true" keyColumn="record_Id" keyProperty="recordId">
+  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthTask" useGeneratedKeys="true" keyColumn="task_id" keyProperty="taskId">
 <!--    <selectKey keyProperty="taskId" order="AFTER" resultType="java.lang.Long">-->
 <!--      SELECT LAST_INSERT_ID()-->
 <!--    </selectKey>-->
