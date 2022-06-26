@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="persistentStateService">
+    <option name="generatorProperties">
+      <GeneratorProperties>
+        <option name="commonProperties">
+          <CommonProperties>
+            <option name="author" value="caojx" />
+            <option name="databaseComboBoxValue" value="ds@localhost:3306:MySQL" />
+            <option name="databases">
+              <list>
+                <DatabaseWithOutPwd>
+                  <option name="databaseName" value="ds" />
+                  <option name="databaseType" value="MySQL" />
+                  <option name="host" value="localhost" />
+                  <option name="identifierName" value="ds@localhost:3306:MySQL" />
+                  <option name="port" value="3306" />
+                  <option name="userName" value="root" />
+                </DatabaseWithOutPwd>
+              </list>
+            </option>
+            <option name="frameworkTypeComboBoxValue" value="MyBatis" />
+            <option name="frameworkTypeComboBoxValues">
+              <list>
+                <option value="MyBatis" />
+                <option value="TkMyBatis" />
+                <option value="MyBatisPlus" />
+              </list>
+            </option>
+            <option name="projectPath" value="$PROJECT_DIR$" />
+          </CommonProperties>
+        </option>
+        <option name="controllerProperties">
+          <ControllerProperties>
+            <option name="namePattern" value="%sController" />
+            <option name="packageName" value="" />
+            <option name="path" value="" />
+          </ControllerProperties>
+        </option>
+        <option name="entityProperties">
+          <EntityProperties>
+            <option name="exampleNamePattern" value="%sExample" />
+            <option name="namePattern" value="%s" />
+            <option name="packageName" value="com.caojx.learn.demo.entity" />
+            <option name="path" value="$PROJECT_DIR$/shardingsphere-springboot/src/main/java/com/caojx/learn/demo/entity" />
+            <option name="selectedAllArgsConstructorCheckBox" value="true" />
+            <option name="selectedBuilderCheckBox" value="true" />
+            <option name="selectedDataCheckBox" value="true" />
+            <option name="selectedNoArgsConstructorCheckBox" value="true" />
+          </EntityProperties>
+        </option>
+        <option name="mapperProperties">
+          <MapperProperties>
+            <option name="namePattern" value="%sMapper" />
+            <option name="packageName" value="com.caojx.learn.demo.mapper" />
+            <option name="path" value="$PROJECT_DIR$/shardingsphere-springboot/src/main/java/com/caojx/learn/demo/mapper" />
+            <option name="selectedEnableDeleteByPrimaryKeyCheckBox" value="true" />
+            <option name="selectedEnableInsertCheckBox" value="true" />
+            <option name="selectedEnableSelectByPrimaryKeyCheckBox" value="true" />
+            <option name="selectedEnableUpdateByPrimaryKeyCheckBox" value="true" />
+            <option name="superMapperClass" value="" />
+          </MapperProperties>
+        </option>
+        <option name="mapperXmlProperties">
+          <MapperXmlProperties>
+            <option name="namePattern" value="%sMapper" />
+            <option name="path" value="$PROJECT_DIR$/shardingsphere-springboot/src/main/resources/mapper" />
+          </MapperXmlProperties>
+        </option>
+        <option name="serviceImplProperties">
+          <ServiceImplProperties>
+            <option name="namePattern" value="%sServiceImpl" />
+            <option name="packageName" value="com.caojx.learn.demo.service.impl" />
+            <option name="path" value="$PROJECT_DIR$/shardingsphere-springboot/src/main/java/com/caojx/learn/demo/service/impl" />
+            <option name="superServiceImplClass" value="" />
+          </ServiceImplProperties>
+        </option>
+        <option name="serviceProperties">
+          <ServiceProperties>
+            <option name="namePattern" value="I%sService" />
+            <option name="packageName" value="com.caojx.learn.demo.service" />
+            <option name="path" value="$PROJECT_DIR$/shardingsphere-springboot/src/main/java/com/caojx/learn/demo/service" />
+            <option name="superServiceClass" value="" />
+          </ServiceProperties>
+        </option>
+      </GeneratorProperties>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caojx.learn.demo.mapper.HealthLevelMapper">
+
+  <resultMap id="BaseResultMap" type="com.caojx.learn.demo.entity.HealthLevel">
+    <id column="level_id" jdbcType="BIGINT" property="levelId"/>
+    <result column="level_name" jdbcType="VARCHAR" property="levelName"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    level_id, level_name
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from health_level
+    where level_id = #{levelId,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from health_level
+    where level_id = #{levelId,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthLevel">
+    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into health_level(level_name)
+    values (#{levelName,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthLevel">
+    <selectKey keyProperty="levelId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into health_level
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="levelName != null">
+        level_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="levelName != null">
+        #{levelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.caojx.learn.demo.entity.HealthLevel">
+    update health_level
+    <set>
+      <if test="levelName != null">
+        level_name = #{levelName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where level_id = #{levelId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.caojx.learn.demo.entity.HealthLevel">
+    update health_level
+    set level_name = #{levelName,jdbcType=VARCHAR}
+    where level_id = #{levelId,jdbcType=BIGINT}
+  </update>
+</mapper>

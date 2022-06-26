@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caojx.learn.demo.mapper.HealthTaskMapper">
+
+  <resultMap id="BaseResultMap" type="com.caojx.learn.demo.entity.HealthTask">
+    <id column="task_id" jdbcType="BIGINT" property="taskId"/>
+    <result column="record_id" jdbcType="BIGINT" property="recordId"/>
+    <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="task_name" jdbcType="VARCHAR" property="taskName"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, record_id, user_id, task_name
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from health_task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from health_task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthTask">
+    <selectKey keyProperty="taskId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into health_task(record_id, user_id, task_name)
+    values (#{recordId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{taskName,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthTask" useGeneratedKeys="true" keyColumn="record_Id" keyProperty="recordId">
+<!--    <selectKey keyProperty="taskId" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+    insert into health_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.caojx.learn.demo.entity.HealthTask">
+    update health_task
+    <set>
+      <if test="recordId != null">
+        record_id = #{recordId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.caojx.learn.demo.entity.HealthTask">
+    update health_task
+    set record_id = #{recordId,jdbcType=BIGINT},
+	  user_id = #{userId,jdbcType=BIGINT},
+	  task_name = #{taskName,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+</mapper>
