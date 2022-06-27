@@ -5,6 +5,7 @@ import com.caojx.learn.demo.entity.HealthTask;
 import com.caojx.learn.demo.mapper.HealthRecordMapper;
 import com.caojx.learn.demo.mapper.HealthTaskMapper;
 import com.caojx.learn.demo.service.IHealthRecordService;
+import org.apache.shardingsphere.api.hint.HintManager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,6 +30,16 @@ public class HealthRecordServiceImpl implements IHealthRecordService {
     @Override
     public void processHealthRecords() throws SQLException {
         insertHealthRecords();
+    }
+
+    @Override
+    public List<HealthRecord> findAll() {
+        // 只对库路由，则只需要hintManager.setDatabaseShardingValue操作
+        HintManager hintManager = HintManager.getInstance();
+        hintManager.setDatabaseShardingValue(1L);  // 强制路由到ds1
+        List<HealthRecord> all = healthRecordMapper.findAll();
+        System.out.println(all);
+        return all;
     }
 
     private List<Long> insertHealthRecords() throws SQLException {

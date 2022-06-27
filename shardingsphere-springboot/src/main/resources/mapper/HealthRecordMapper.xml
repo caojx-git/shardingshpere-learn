@@ -12,6 +12,12 @@
     record_id, user_id, level_id, remark
   </sql>
 
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from health_record
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -24,18 +30,18 @@
     where record_id = #{recordId,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthRecord" useGeneratedKeys="true" keyColumn="record_Id" keyProperty="recordId">
-<!--    <selectKey keyProperty="recordId" order="AFTER" resultType="java.lang.Long">-->
-<!--      SELECT LAST_INSERT_ID()-->
-<!--    </selectKey>-->
+  <insert id="insert" parameterType="com.caojx.learn.demo.entity.HealthRecord">
+    <selectKey keyProperty="recordId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into health_record(user_id, level_id, remark)
     values (#{userId,jdbcType=BIGINT}, #{levelId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthRecord" useGeneratedKeys="true" keyColumn="record_Id" keyProperty="recordId">
-<!--    <selectKey keyProperty="recordId" order="AFTER" resultType="java.lang.Long">-->
-<!--      SELECT LAST_INSERT_ID()-->
-<!--    </selectKey>-->
+  <insert id="insertSelective" parameterType="com.caojx.learn.demo.entity.HealthRecord">
+    <selectKey keyProperty="recordId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into health_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">

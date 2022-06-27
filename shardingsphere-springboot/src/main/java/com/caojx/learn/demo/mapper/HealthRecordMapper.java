@@ -3,14 +3,22 @@ package com.caojx.learn.demo.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import com.caojx.learn.demo.entity.HealthRecord;
 
+import java.util.List;
+
 /**
 * 注释 Mapper
 *
 * @author caojx
-* @date 2022-06-26 22:19
+* @date 2022-06-27 22:28
 */
 @Mapper
 public interface HealthRecordMapper {
+
+    /**
+     * 查询全部数据
+     * @return
+     */
+    List<HealthRecord> findAll();
 
     /**
      * 根据主键id查询

@@ -1,7 +1,10 @@
 package com.caojx.learn.demo.service;
 
 
+import com.caojx.learn.demo.entity.HealthRecord;
+
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author caojx
@@ -11,4 +14,6 @@ public interface IHealthRecordService {
 
     void processHealthRecords() throws SQLException;
 
+
+    List<HealthRecord> findAll();
 }
