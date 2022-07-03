@@ -2,15 +2,16 @@ package com.caojx.learn.demo.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.caojx.learn.demo.entity.HealthRecord;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
-* 注释 Mapper
-*
-* @author caojx
-* @date 2022-06-27 22:28
-*/
+ * 注释 Mapper
+ *
+ * @author caojx
+ * @date 2022-06-27 22:28
+ */
 @Mapper
 public interface HealthRecordMapper {
 
@@ -19,6 +20,12 @@ public interface HealthRecordMapper {
      * @return
      */
     List<HealthRecord> findAll();
+
+    /**
+     * 查询全部数据
+     * @return
+     */
+    List<HealthRecord> findByUserId(@Param("userId") Long userId);
 
     /**
      * 根据主键id查询

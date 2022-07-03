@@ -35,9 +35,13 @@ public class HealthRecordServiceImpl implements IHealthRecordService {
     @Override
     public List<HealthRecord> findAll() {
         // 只对库路由，则只需要hintManager.setDatabaseShardingValue操作
+        HintManager.clear();
         HintManager hintManager = HintManager.getInstance();
-        hintManager.setDatabaseShardingValue(1L);  // 强制路由到ds1
+        // 强制路由到ds1
+
+        hintManager.addDatabaseShardingValue("health_record", 1);
         List<HealthRecord> all = healthRecordMapper.findAll();
+//        List<HealthRecord> all = healthRecordMapper.findByUserId(1L);
         System.out.println(all);
         return all;
     }

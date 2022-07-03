@@ -11,13 +11,18 @@ import java.util.Collection;
  *
  * @author caojx created on 2022/6/27 9:43 PM
  */
-public final class MyHintShardingAlgorithm implements HintShardingAlgorithm<Long> {
+public final class MyHintShardingAlgorithm implements HintShardingAlgorithm<Integer> {
 
+    /**
+     * @param availableTargetNames 代表：分片目标，即数据库、表分片。如果是对分库路由，表示ds0，ds1；
+     * @param shardingValue        代表：分片值; 可以HintManager设置多个分片值，所以是个集合。
+     * @return
+     */
     @Override
-    public Collection<String> doSharding(final Collection<String> availableTargetNames, final HintShardingValue<Long> shardingValue) {
+    public Collection<String> doSharding(final Collection<String> availableTargetNames, final HintShardingValue<Integer> shardingValue) {
         Collection<String> result = new ArrayList<>();
-        for (String each : availableTargetNames) { // 代表：分片目标，即数据库、表分片。如果是对分库路由，表示ds0，ds1；
-            for (Long value : shardingValue.getValues()) { // 代表：分片值; 可以HintManager设置多个分片值，所以是个集合。
+        for (String each : availableTargetNames) {
+            for (Integer value : shardingValue.getValues()) {
                 if (each.endsWith(String.valueOf(value))) {
                     result.add(each);
                 }
